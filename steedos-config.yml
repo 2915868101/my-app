@@ -4,6 +4,7 @@ datasources:
       url: ${MONGO_URL}
     objectFiles:
       - "./steedos-app/**"
+# 文件存储     
 public:
   cfs:
     store: ${STEEDOS_CFS_STORE}
@@ -34,6 +35,7 @@ cfs:
     endpoint: ${STEEDOS_CFS_CLOUD_ENDPOINT}
     accessKeyId: ${STEEDOS_CFS_CLOUD_ACCESSKEYID}
     secretAccessKey: ${STEEDOS_CFS_CLOUD_SECRETACCESSKEY}
+# 登陆界面配置
 tenant:
   _id: ${STEEDOS_CLOUD_SPACE_ID}
   name: 华炎魔方
@@ -41,26 +43,29 @@ tenant:
   logo_square_url: ${STEEDOS_CLOUD_LOGO_SQUARE_URL}
   background_url:
   enable_register: ${STEEDOS_TENANT_CONFIG_ENABLE_REGISTER} # 启用注册功能 true / false
-  enable_forget_password: false
-  enable_create_tenant: false
-  enable_password_login: true
-  enable_bind_email: false
-  enable_bind_mobile: false
+  enable_forget_password: false  # 找回密码 true / false
+  enable_create_tenant: false # 允许创建企业 true / false
+  enable_password_login: true # 使用密码登录 true / false
+  enable_bind_email: false # 强制绑定邮箱
+  enable_bind_mobile: false # 强制绑定手机号
+# 发送短信配置 （用于通过手机短信登录和接受账户提醒消息）
 sms:
   qcloud:
     smsqueue_interval: 1000
     sdkappid: ${STEEDOS_SMS_QCLOUD_SDKAPPID}
     appkey: ${STEEDOS_SMS_QCLOUD_APPKEY}
     signname: ${STEEDOS_SMS_QCLOUD_SIGNNAME}
+# 邮件配置 （配置SMTP服务的相关参数，用于系统发送推送邮件）
 email:
   from: ${MAIL_FROM}
   url: ${MAIL_URL}
   signname: ${MAIL_SIGNNAME}
+# 定时任务配置
 cron:
-  instancerecordqueue_interval: 10000
-  mailqueue_interval: 10000
-  # push_interval: 1000
-  webhookqueue_interval: 1000
+  instancerecordqueue_interval: 10000 # 对象流程队列的轮询间隔(单位毫秒)
+  mailqueue_interval: 10000 # 邮件队列的轮询间隔(单位毫秒)
+  # push_interval: 1000 # 消息推送的轮询间隔(单位毫秒)
+  webhookqueue_interval: 1000 #流程触发器队列的轮询间隔(单位毫秒)
 dingtalk:
   api_Key: ${APIKEY}
   log_path: ${DING_LOGPATH}
